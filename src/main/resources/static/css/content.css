@@ -56,3 +56,12 @@ input.content_btn01:hover {
 	cursor: pointer;
 }
 
+textarea.textareabox {
+	border: 1px solid #03b4b8;
+	background-color: #ffffff;
+	width: 250px;
+	font-family: Arial;
+	font-size: 20px;
+	color: #0089d2;
+	padding: 5px;
+}

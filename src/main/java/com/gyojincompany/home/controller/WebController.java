@@ -35,4 +35,9 @@ public class WebController {
 	public String contact() {
 		return "contact";
 	}
+	
+	@RequestMapping(value = "/question")
+	public String question() {
+		return "question";
+	}
 }
