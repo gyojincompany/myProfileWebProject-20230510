@@ -30,7 +30,19 @@ tr.marginline {
 	height: 40px;
 }
 
+a:link {
+	text-decoration: none;
+	color: inherit;
+}
 
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: underline;
+}
 
 
 
