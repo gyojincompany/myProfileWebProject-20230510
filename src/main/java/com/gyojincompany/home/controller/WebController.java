@@ -1,5 +1,7 @@
 package com.gyojincompany.home.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gyojincompany.home.dao.IDao;
+import com.gyojincompany.home.dto.BoardDto;
 import com.gyojincompany.home.dto.MemberDto;
 
 @Controller
@@ -53,7 +56,7 @@ public class WebController {
 		
 		String sessionId = (String) session.getAttribute("sessionId");
 		
-		MemberDto memberDto = new MemberDto("GUEST"," ","비회원","guest@guest.com"," ");
+		MemberDto memberDto = new MemberDto("GUEST","","비회원","","");
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -61,8 +64,7 @@ public class WebController {
 			model.addAttribute("memberDto", memberDto);
 		} else {
 			model.addAttribute("memberDto", dao.getMemberInfo(sessionId));
-		}
-		
+		}		
 		
 		return "question";
 	}
@@ -155,10 +157,35 @@ public class WebController {
 		
 		model.addAttribute("memberDto", dao.getMemberInfo(mid));//수정이 된 후 회원 정보
 		
-		return "modifyOk";
-		
+		return "modifyOk";		
 	}
 	
+	@RequestMapping(value = "/questionOk")
+	public String questionOk(HttpServletRequest request) {
+		
+		String bid = request.getParameter("bid");
+		String bname = request.getParameter("bname");
+		String bcontent = request.getParameter("bcontent");
+		String bemail = request.getParameter("bemail");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.questionWriteDao(bid, bname, bcontent, bemail);		
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/list")
+	public String list(Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		List<BoardDto> boardDtos = dao.questionListDao();
+		
+		model.addAttribute("boardDtos", boardDtos);
+		
+		return "list";
+	}
 	
 	
 	
