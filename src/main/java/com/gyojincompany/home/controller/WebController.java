@@ -107,6 +107,13 @@ public class WebController {
 		return "loginOk";
 	}
 	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();//세션 삭제->로그아웃
+		
+		return "redirect:login";
+	}
+	
 	
 	
 	
