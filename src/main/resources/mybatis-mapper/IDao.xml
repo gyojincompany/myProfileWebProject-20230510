@@ -34,6 +34,7 @@
 			(SELECT A.*, FLOOR((ROWNUM-1)/#{amount}+1)PAGE, ROWNUM  
 				FROM 
 					(SELECT * FROM web_board ORDER BY bnum DESC)A)
+						WHERE PAGE=#{pageNum}
 		 	
 	</select>
 	
