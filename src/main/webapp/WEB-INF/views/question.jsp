@@ -34,11 +34,11 @@
 									<form action="joinOk" method="post">
 									<tr>
 										<td class="content_text">아 이 디 : </td>
-										<td><input class="inputbox01" type="text" name="bid"></td>
+										<td><input class="inputbox01" type="text" name="bid" value="${memberDto.mid }" readonly="readonly"></td>
 									</tr>
 									<tr>
 										<td class="content_text">글 쓴 이 : </td>
-										<td><input class="inputbox01" type="text" name="bname"></td>
+										<td><input class="inputbox01" type="text" name="bname" value="${memberDto.mname }"></td>
 									</tr>
 									<tr>
 										<td class="content_text">질문내용 : </td>
@@ -47,7 +47,7 @@
 									
 									<tr>
 										<td class="content_text">이 메 일 : </td>
-										<td><input class="inputbox01" type="text" name="bemail"></td>
+										<td><input class="inputbox01" type="text" name="bemail" value="${memberDto.memail }"></td>
 									</tr>
 									
 									<tr>

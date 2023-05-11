@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gyojincompany.home.dao.IDao;
+import com.gyojincompany.home.dto.MemberDto;
 
 @Controller
 public class WebController {	
@@ -48,7 +49,21 @@ public class WebController {
 	}
 	
 	@RequestMapping(value = "/question")
-	public String question() {
+	public String question(HttpSession session, Model model) {
+		
+		String sessionId = (String) session.getAttribute("sessionId");
+		
+		MemberDto memberDto = new MemberDto("GUEST"," ","비회원","guest@guest.com"," ");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		if(sessionId == null) {
+			model.addAttribute("memberDto", memberDto);
+		} else {
+			model.addAttribute("memberDto", dao.getMemberInfo(sessionId));
+		}
+		
+		
 		return "question";
 	}
 	
