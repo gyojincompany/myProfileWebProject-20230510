@@ -1,6 +1,7 @@
 package com.gyojincompany.home.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +83,28 @@ public class WebController {
 		}
 		
 		return "joinOk";
+	}
+	
+	@RequestMapping(value = "/loginOk")
+	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
+		
+		String mid = request.getParameter("mid");
+		String mpw = request.getParameter("mpw");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int checkIdPwFlag = dao.checkIdPwDao(mid, mpw);
+		//1이면 로그인 성공, 0이면 로그인 실패
+		
+		model.addAttribute("checkIdPwFlag", checkIdPwFlag);
+		
+		if(checkIdPwFlag == 1) {//로그인 성공 실행
+			session.setAttribute("sessionId", mid);			
+			
+			model.addAttribute("memberDto", dao.getMemberInfo(mid));
+		}
+		
+		return "loginOk";
 	}
 	
 	

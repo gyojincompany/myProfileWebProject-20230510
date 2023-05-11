@@ -13,4 +13,12 @@
 		SELECT COUNT(*) FROM web_member WHERE mid=#{param1}
 	</select>
 	
+	<select id="checkIdPwDao" resultType="int">
+		SELECT COUNT(*) FROM web_member WHERE mid=#{param1} AND mpw=#{param2}
+	</select>
+	
+	<select id="getMemberInfo" resultType="com.gyojincompany.home.dto.MemberDto">
+		SELECT * FROM web_member WHERE mid=#{param1}
+	</select>
+	
 </mapper>	
