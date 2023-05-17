@@ -193,14 +193,13 @@ public class WebController {
 		
 		int total = dao.boardAllCountDao();//모든 글의 개수
 		
-		PageDto pageDto = new PageDto(criteria, total);	
-		
+		PageDto pageDto = new PageDto(criteria, total);
 		
 		List<BoardDto> boardDtos = dao.questionListDao(criteria.getAmount(), pageNum);
 		
 		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("boardDtos", boardDtos);
-		
+		model.addAttribute("currPage", pageNum);		
 		return "list";
 	}
 	
