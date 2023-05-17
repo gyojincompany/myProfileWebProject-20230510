@@ -31,10 +31,10 @@
 	
 	<select id="questionListDao" resultType="com.gyojincompany.home.dto.BoardDto">
 		SELECT * FROM 
-			(SELECT A.*, FLOOR((ROWNUM-1)/#{amount}+1)PAGE, ROWNUM  
+			(SELECT A.*, FLOOR(((ROWNUM-1)/#{param1})+1)PAGE, ROWNUM  
 				FROM 
 					(SELECT * FROM web_board ORDER BY bnum DESC)A)
-						WHERE PAGE=#{pageNum}
+						WHERE PAGE=#{param2}
 		 	
 	</select>
 	
@@ -45,5 +45,9 @@
 	<delete id="deleteDao">
 		DELETE FROM web_board WHERE bnum=#{param1}
 	</delete>
+	
+	<select id="boardAllCountDao" resultType="int">
+		SELECT COUNT(*) FROM web_board
+	</select>
 	
 </mapper>	

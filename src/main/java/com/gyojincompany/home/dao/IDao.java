@@ -16,7 +16,8 @@ public interface IDao {
 	
 	//게시판관리
 	public void questionWriteDao(String bid, String bname, String bcontent, String bemail);//질문하기 insert
-	public List<BoardDto> questionListDao();//모든 글 목록 가져오기
+	public List<BoardDto> questionListDao(int amount, int pageMum);//모든 글 목록 가져오기
 	public BoardDto contentViewDao(String bnum);//리스트에서 선택한 특정 글 가져오기
 	public void deleteDao(String bnum);//글삭제
+	public int boardAllCountDao();//모든 글의 개수를 반환
 }

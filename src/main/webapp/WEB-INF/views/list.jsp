@@ -65,15 +65,28 @@
 														<c:out value="${fn:substring(dto.bdate,0,10) }"></c:out>													
 													</td>
 												</tr>	
-												</c:forEach>												
+												</c:forEach>																								
 											</table>
 										</td>										
 									</tr>
 									<tr>
 										<td colspan="5" align="right">
 											<input class="content_btn01" type="button" value="글쓰기" onclick="script:window.location.href='question'">
+										</td>										
+									</tr>
+									<tr>
+										<td colspan="5" align="center">
+											<c:if test="${pageMaker.prev}">
+												<a href="list?pageNum=${pageMaker.startPage-5 }">◀</a>&nbsp;&nbsp;&nbsp;
+											</c:if>
+											<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+												<a href="list?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+											</c:forEach>
+											<c:if test="${pageMaker.next}">
+												<a href="list?pageNum=${pageMaker.startPage+5 }">▶</a>
+											</c:if>
 										</td>
-									</tr>									
+									</tr>																		
 								</table>
 							</center>
 						</td>
